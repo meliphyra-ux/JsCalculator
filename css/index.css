@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#button--container{
+    padding: 10px;
+    background-color: #F5EDDC;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    max-height: 465px;
+    max-width: 400px;
+    gap: 5px;
+    border: 5px double #000000;
+    
+}
+#button--container input{
+    grid-column: 1/5;
+    min-height: 100px;
+    font-size: 80px;
+    text-align: right;
+}
+#button--container button{
+    background-color: #EB1D36;
+    border: none;
+    font-size: 32px;
+    border-radius: 5px;
+    color: #ffffff;
+    min-width: 80px;
+    min-height: 80px;
+    cursor: pointer;
+}
+#button--container button[value="0"]{
+    grid-column: 1/3;
+}
