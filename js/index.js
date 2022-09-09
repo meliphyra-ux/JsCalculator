@@ -1,46 +1,126 @@
-const buttonsArray = [0,1,2,3,4,5,6,7,8,9,'-','+','=','A/C','%'];
-const buttonContainter = document.querySelector('div#button--container');
-let displayValue = '';
-const inputValue = document.querySelector('input');
+// Constants and variables
 
-buttonsArray.forEach(button => createButton(button))
+const buttonsArray = ['A/C', '+/-', '%', '/', 7, 8, 9, '*', 4, 5, 6 , '-', 1, 2, 3, '+', 0, '=']
+let displayValue = "";
+let result = 0;
+let firstNumber = null;
+let secondNumber = null;
+let operator = null;
 
-function createButton(button){
-    const createdButton = document.createElement('button');
-    createdButton.setAttribute("value", `${button}`)
-    createdButton.textContent = button;
-    buttonContainter.appendChild(createdButton)
-    // if(typeof button == string){
-        
-    // }
-    // else{
-        createdButton.addEventListener("click", (e) => addDigit(e.target.value))
-    // } 
+const inputValue = document.querySelector("input");
+inputValue.value = 0;
+const buttonContainter = document.querySelector("div#button--container");
+
+// Creating Buttons
+
+buttonsArray.forEach((button) => createButton(button));
+
+function createButton(button) {
+  const createdButton = document.createElement("button");
+  createdButton.setAttribute("value", `${button}`);
+  createdButton.textContent = button;
+  console.log(button);
+  buttonContainter.appendChild(createdButton);
+  createdButton.addEventListener("click", (e) => {
+    if (button === "A/C") {
+      displayValue = "";
+      inputValue.value = 0;
+      firstNumber = null;
+      secondNumber = null;
+    } else if (button === "-") {
+      setOperator(button);
+    } else if (button === "+") {
+      setOperator(button);
+    } else if (button === "*") {
+      setOperator(button);
+    } else if (button === "/") {
+      setOperator(button);
+    } else if (button === "%") {
+      inputValue.value = displayValue / 100;
+    } else if (button === "=") {
+      setNumbers();
+      displayValue = "";
+      firstNumber = null;
+      secondNumber = null;
+      inputValue.value = result;
+      result = 0;
+    } else {
+      addDigit(e.target.value);
+    }
+  });
 }
-window.addEventListener("keydown", (e)=>{
-    const pressedKey = document.querySelector(`button[value="${e.key}"]`)
+
+// Giving buttons click event by pressing keys on keyboard
+
+window.addEventListener("keydown", (e) => {
+  try {
+    const pressedKey = document.querySelector(`button[value="${e.key}"]`);
     pressedKey.click();
-})
+    console.log(pressedKey)
+  } catch (e) {
+    console.log("You typed letter, not number");
+  }
+});
 
-function updateDisplay(){
-    inputValue.value = displayValue; 
+// Functions
+
+function updateDisplay() {
+  inputValue.value = displayValue;
 }
 
-function addDigit(digit){
-    displayValue += digit;
-    updateDisplay()
-    console.log(displayValue)
+function addDigit(digit) {
+  displayValue += digit;
+  updateDisplay();
 }
 
-function add(firstNumber, secondNumber){
-    return firstNumber + secondNumber;
+function setOperator(operatorValue) {
+  setNumbers();
+  operator = operatorValue;
+  displayValue = "";
 }
-function substract(firstNumber, secondNumber){
-    return firstNumber - secondNumber;
+function setNumbers() {
+  if (firstNumber === null) {
+    firstNumber = +inputValue.value;
+  } else if (firstNumber != null && secondNumber != null) {
+    secondNumber = +inputValue.value;
+    operate(firstNumber, secondNumber, operator);
+    inputValue.value = result;
+    firstNumber = result
+  } else {
+    secondNumber = +inputValue.value;
+    operate(firstNumber, secondNumber, operator);
+    inputValue.value = result;
+    firstNumber = result
+  }
 }
-function multiply(firstNumber, secondNumber){
-    return firstNumber * secondNumber;
+
+// Math functions
+
+function add(firstNumber, secondNumber) {
+  result = firstNumber + secondNumber;
 }
-function divide(firstNumber, secondNumber){
-    return firstNumber / secondNumber;
+function substract(firstNumber, secondNumber) {
+  result = firstNumber - secondNumber;
+}
+function multiply(firstNumber, secondNumber) {
+  result = firstNumber * secondNumber;
+}
+function divide(firstNumber, secondNumber) {
+  result = secondNumber != 0 ? firstNumber / secondNumber : 'Error';
+}
+function operate(firstNum, secondNum, operator) {
+  switch (operator) {
+    case "-":
+      substract(firstNum, secondNum);
+      break;
+    case "+":
+      add(firstNum, secondNum);
+      break;
+    case "*":
+      multiply(firstNum, secondNum);
+      break;
+    case "/":
+      divide(firstNum, secondNum);
+      break;
+  }
 }
