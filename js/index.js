@@ -1,7 +1,7 @@
 // Constants and variables
 
 const buttonsArray = ['A/C', '+/-', '%', '/', 7, 8, 9, '*', 4, 5, 6 , '-', 1, 2, 3, '+', 0, '.', '=']
-let displayValue = "";
+let displayValue = '';
 let result = 0;
 let firstNumber = null;
 let secondNumber = null;
@@ -75,7 +75,7 @@ function updateDisplay() {
 }
 
 function addDigit(digit) {
-  if(inputValue.value === '0' && digit === '0'){
+  if(displayValue === '0' && digit === '0'){
     console.log('Same value')
   }
   else{
