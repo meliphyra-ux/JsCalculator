@@ -19,7 +19,6 @@ function createButton(button) {
   const createdButton = document.createElement("button");
   createdButton.setAttribute("value", `${button}`);
   createdButton.textContent = button;
-  console.log(button);
   buttonContainter.appendChild(createdButton);
   createdButton.addEventListener("click", (e) => {
     if (button === "A/C") {
