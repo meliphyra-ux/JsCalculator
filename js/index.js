@@ -37,7 +37,10 @@ function createButton(button) {
       setOperator(button);
     } else if (button === "%") {
       inputValue.value = displayValue / 100;
-    } else if (button === "=") {
+    }else if (button === "+/-") {
+      inputValue.value = displayValue * -1;
+    }
+     else if (button === "=") {
       setNumbers();
       displayValue = "";
       firstNumber = null;
@@ -54,9 +57,13 @@ function createButton(button) {
 
 window.addEventListener("keydown", (e) => {
   try {
-    const pressedKey = document.querySelector(`button[value="${e.key}"]`);
-    pressedKey.click();
-    console.log(pressedKey)
+    if(e.key === 'Backspace'){
+      document.querySelector(`button[value="A/C"]`).click()
+    }
+    else{
+      const pressedKey = document.querySelector(`button[value="${e.key}"]`);
+      pressedKey.click();
+    }
   } catch (e) {
     console.log("You typed letter, not number");
   }
