@@ -75,8 +75,13 @@ function updateDisplay() {
 }
 
 function addDigit(digit) {
-  displayValue += digit;
-  updateDisplay();
+  if(inputValue.value === '0' && digit === '0'){
+    console.log('Same value')
+  }
+  else{
+    displayValue += digit;
+    updateDisplay();
+  }
 }
 
 function setOperator(operatorValue) {
