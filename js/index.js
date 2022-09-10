@@ -36,9 +36,9 @@ function createButton(button) {
     } else if (button === "/") {
       setOperator(button);
     } else if (button === "%") {
-      inputValue.value = displayValue / 100;
+      inputValue.value = +inputValue.value / 100;
     }else if (button === "+/-") {
-      inputValue.value = displayValue * -1;
+      inputValue.value = +inputValue.value * -1;
     }
      else if (button === "=") {
       setNumbers();
@@ -84,6 +84,7 @@ function setOperator(operatorValue) {
   setNumbers();
   operator = operatorValue;
   displayValue = "";
+  inputValue.value = 0;
 }
 function setNumbers() {
   if (firstNumber === null) {
