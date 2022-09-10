@@ -118,7 +118,7 @@ function multiply(firstNumber, secondNumber) {
   result = firstNumber * secondNumber;
 }
 function divide(firstNumber, secondNumber) {
-  result = secondNumber != 0 ? firstNumber / secondNumber : 'Error';
+  result = secondNumber != 0 ? (firstNumber / secondNumber).toFixed(5) : 'Error';
 }
 function operate(firstNum, secondNum, operator) {
   switch (operator) {
