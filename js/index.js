@@ -1,6 +1,6 @@
 // Constants and variables
 
-const buttonsArray = ['A/C', '+/-', '%', '/', 7, 8, 9, '*', 4, 5, 6 , '-', 1, 2, 3, '+', 0, '=']
+const buttonsArray = ['A/C', '+/-', '%', '/', 7, 8, 9, '*', 4, 5, 6 , '-', 1, 2, 3, '+', 0, '.', '=']
 let displayValue = "";
 let result = 0;
 let firstNumber = null;

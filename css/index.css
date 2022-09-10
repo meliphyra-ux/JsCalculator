@@ -50,6 +50,3 @@ body{
 #button--container button[value="0"]{
     grid-column: 1/3;
 }
-#button--container button[value="="]{
-    grid-column: 3/5;
-}
